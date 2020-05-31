@@ -1,0 +1,69 @@
+SQL> create table participants(college varchar2(100),id varchar2(100),pass varchar2(100));
+
+Table created.
+
+SQL> alter table participants add constraint pk_part primary key(id);
+
+Table altered.
+
+SQL> insert into participants values('NITW','1','1');
+
+1 row created.
+
+SQL> insert into participants values('NITC','2','2');
+
+1 row created.
+
+SQL> alter table participants
+  2  rename to oldparti;
+
+Table altered.
+
+SQL> SQL> create table participants(college varchar2(100),id varchar2(100),pass varchar2(100),pool varchar2(1),ques integer);
+
+Table created.
+
+SQL> alter table participants add constraint pk_parti primary key(id);
+	alter table participants add constraint uk_parti unique (college);
+ 	ALTER TABLE participants add CONSTRAINT unique_ques UNIQUE (pool,ques);
+
+Table altered.
+
+________________________________________________________________________________________________________________________________________________________________
+
+create table activeSessions(college varchar2(100),id varchar2(100),pool varchar2(100),active int);
+
+alter table activeSessions add CONSTRAINT pk_as PRIMARY KEY (id);
+
+alter table activeSessions add CONSTRAINT fk_as FOREIGN KEY (id) references participants(id);
+______________________________________________________________________________________________________________________________________________________________
+
+SQL> create table questions(quesno integer,clgid varchar2(100),questag varchar2(50),question varchar2(1500),inputf varchar2(500),outputf varchar2(500),constr varchar2(500),test1 varchar2(50),ans1 varchar2(50),test2 varchar2(50),ans2 varchar2(50),test3 varchar2(50),ans3 varchar2(50));
+
+Table created.
+
+SQL> insert into questions values(1,null,'Wet clothes','We have m completely wet clothes out under sunshine waiting to become dry. we are now at second t1 and its raining. Its going to rain again on seconds t2...tn and after each rain clothes will be completely wet again. Cloth number i needs  seconds to become dry. We can go out and collect all dry clothes at any moment but cant do this more than  times. What is the maximum number of clothes we can collect until second ? Note that the duration of each rain is almost zero, so we can ignore it. Also collecting clothes does not take any time from us.','First line of input contains three integers  (, ) respectively. In the second line will be  increasing numbers denoting  (). In the Last line will have  numbers denoting  ().','In a single line print maxmimum number of clothes we can collect.','','3 3 2\n3 5 8\n4 1 3','2','','','','');
+
+1 row created.
+
+SQL> insert into questions values(2,'1','Memorise Me!','Arijit is a brilliant boy. He likes memory games. He likes to participate alone but this time he has to have a partner. So he chooses you.In this Game , your team will be shown N numbers for few minutes . You will have to memorize these numbers.Now, the questioner will ask you Q queries, in each query He will give you a number , and you have to tell him the total number of occurrences of that number in the array of numbers shown to your team . If the number is not present , then you will have to say NOT PRESENT.','The first line of input will contain N, an integer, which is the total number of numbers shown to your team.The second line of input contains N space separated integers .The third line of input contains an integer Q , denoting the total number of integers.The Next Q lines will contain an integer denoting an integer,  , for which you have to print the number of occurrences of that number () in those N numbers on a new line.','If the number  isnt present then Print NOT PRESENT on a new line.','1 \le N \le 10^{5} 0 \le  B_i \le 1000 1\le Q \le 10^{5}','6 1 1 1 2 2 0 6 1 2 1 0 3 4','3 2 3 1 NOT PRESENT NOT PRESENT','','','','');
+
+1 row created.
+
+SQL> insert into questions(quesno,clgid,questag) values(3,2,'Append and Delete');
+
+1 row created.
+
+SQL> alter table questions
+  2  rename to oldques;
+
+Table altered.
+
+SQL> create table questions(quesno integer,questag varchar2(50),question varchar2(1500),inputf varchar2(500),outputf varchar2(500),constr varchar2(500),
+marks int,
+  2  test1 varchar2(50),ans1 varchar2(50),test2 varchar2(50),ans2 varchar2(50),test3 varchar2(50),ans3 varchar2(50));
+
+Table created.
+________________________________________________________________________________________________________________________________________________________________
+
+
